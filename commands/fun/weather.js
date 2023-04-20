@@ -1,6 +1,7 @@
+require('dotenv').config()
 const { SlashCommandBuilder } = require('discord.js');
 const axios = require('axios');
-const WEATHER_API_KEY = 'f61a0818e1cf4b39a3073923231604';
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY
 
 // module.exports = {
 //   data: new SlashCommandBuilder()
