@@ -68,7 +68,7 @@ if (timestamps.has(interaction.user.id)) {
 
 	if (now < expirationTime) {
 		const remainingTime = Math.round((expirationTime-now) / 1000);
-		return interaction.reply({ content: `Please wait, you are on a cooldown for \`${command.data.name}\`. You can use it again ${remainingTime} seconds.`, ephemeral: true });
+		return interaction.reply({ content: `Please wait, you are on a cooldown for \`${command.data.name}\`. You can use it again in ${remainingTime} seconds.`, ephemeral: true });
 	}
 }
 
