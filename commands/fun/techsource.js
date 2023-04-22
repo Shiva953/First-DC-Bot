@@ -30,7 +30,7 @@ module.exports = {
     fields: [],
     footer: {
       text: 'Powered by NewsData.io',
-      icon_url: 'https://www.newsdata.io/static/images/Logo-Blue.svg',
+      icon_url: '',
     },
   };
 
