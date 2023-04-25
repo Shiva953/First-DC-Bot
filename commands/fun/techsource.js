@@ -11,22 +11,23 @@ module.exports = {
 	  .addStringOption(option => option.setName('topic').setDescription('The topic to get tech news for').setRequired(true)),
 
       async execute(interaction) {
+        await interaction.deferReply(`The Bot is Thinking...`)
         const topic = interaction.options.getString('topic');
         const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${NEWSDATA_API_KEY}&q=${topic}&language=en&category=technology`);
         const tech_news = response.data;
       
         // Check if there are any news articles
   if (tech_news.results.length === 0) {
-    await interaction.reply(`Sorry, there are no news articles found for ${topic}.`);
+    await interaction.editReply(`Sorry, there are no news articles found for ${topic}.`);
     return;
   }
 
   // Create a new embed message
   const embed = {
-    color: parseInt('0099ff', 16),
+    color: parseInt(Math.floor(Math.random() * 16777215).toString(16),16),
     title: `Latest technology news for ${topic}`,
     description: '',
-    thumbnail: { url: tech_news.results[0].image_url },
+    thumbnail: { url: '' },
     fields: [],
     footer: {
       text: 'Powered by NewsData.io',
@@ -44,7 +45,7 @@ module.exports = {
   }
 
   // Send the embed message
-  await interaction.reply({ embeds: [embed] });
+  await interaction.editReply({ embeds: [embed] });
 }
       }
       

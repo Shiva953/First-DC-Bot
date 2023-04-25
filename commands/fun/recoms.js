@@ -26,7 +26,7 @@ module.exports = {
         const books = response.data
 
         const exampleEmbed = {
-            color: parseInt('0099ff',16),
+            color: parseInt(Math.floor(Math.random() * 16777215).toString(16),16),
             title: books.items[0].volumeInfo.title,
             url: books.items[0].volumeInfo.previewLink,
             author: {
