@@ -39,7 +39,6 @@ module.exports = {
           )
       )
       ,
-
       async execute(interaction) {
         await interaction.deferReply(`.......`)
         if (interaction.options.getSubcommand() === 'exchange') {
