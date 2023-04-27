@@ -45,20 +45,25 @@ module.exports = {
         if (interaction.options.getSubcommand() === 'encrypt') {
             const message = interaction.options.getString('message');
 			const algorithm = interaction.options.getString('algorithm');
+            
             const hash = CryptoJS.algo[algorithm].create();
             hash.update(message);
             const hashedMessage = hash.finalize().toString();
             await interaction.reply(`Encrypted message : ${hashedMessage}`)
 
 		} else if (interaction.options.getSubcommand() === 'decrypt') {
-            const cipherHex = interaction.options.getString('cipher');
-            const cipher = CryptoJS.enc.Hex.parse(cipherHex);
+            const cp = interaction.options.getString('cipher');
+            const cipher = CryptoJS.enc.Hex.parse(cp)
             const algorithm = interaction.options.getString('algorithm')
-            const key = interaction.options.getString('key')
+            const ckey = interaction.options.getString('key')
+            const key = CryptoJS.enc.Utf8.parse(ckey);
             let decryptedMessage;
             switch (algorithm) {
               case 'AES':
-                decryptedMessage = CryptoJS.AES.decrypt(cipher, key).toString(CryptoJS.enc.Utf8);
+                decryptedMessage = CryptoJS.AES.decrypt({ciphertext: cipher}, key, {
+                  iv: CryptoJS.enc.Hex.parse('00000000000000000000000000000000'),
+                  mode: CryptoJS.mode.CBC
+              }).toString(CryptoJS.enc.Utf8);
                 break;
               case 'TripleDES':
                 decryptedMessage = CryptoJS.TripleDES.decrypt(cipher, key).toString(CryptoJS.enc.Utf8);
