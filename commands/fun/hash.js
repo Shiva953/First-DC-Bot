@@ -80,12 +80,6 @@ module.exports = {
                   mode: CryptoJS.mode.CBC
               }).toString(CryptoJS.enc.Utf8);
               break;
-              case 'RC4Drop':
-                decryptedMessage = CryptoJS.RC4Drop.decrypt(cipher, key).toString(CryptoJS.enc.Utf8);
-                break;
-              case 'Rabbit':
-                decryptedMessage = CryptoJS.Rabbit.decrypt(cipher, key).toString(CryptoJS.enc.Utf8);
-                break;
               default:
                 await interaction.reply(`Invalid algorithm: ${algorithm}`);
                 return;
