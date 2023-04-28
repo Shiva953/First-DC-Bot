@@ -1,6 +1,5 @@
 require('dotenv').config()
 const { SlashCommandBuilder } = require('discord.js');
-const axios = require('axios');
 const CryptoJS = require("crypto-js");
 
 module.exports = {
@@ -66,21 +65,27 @@ module.exports = {
               }).toString(CryptoJS.enc.Utf8);
                 break;
               case 'TripleDES':
-                decryptedMessage = CryptoJS.TripleDES.decrypt(cipher, key).toString(CryptoJS.enc.Utf8);
+                decryptedMessage = CryptoJS.TripleDES.decrypt({ciphertext: cipher}, key, {
+                  iv: CryptoJS.enc.Hex.parse('0000000000000000'),
+                  mode: CryptoJS.mode.CBC
+              }).toString(CryptoJS.enc.Utf8);
                 break;
               case 'DES':
-                decryptedMessage = CryptoJS.DES.decrypt(cipher, key).toString(CryptoJS.enc.Utf8);
+                decryptedMessage = CryptoJS.DES.decrypt({ciphertext: cipher}, key, {
+                  mode: CryptoJS.mode.CBC
+              }).toString(CryptoJS.enc.Utf8);
                 break;
               case 'RC4':
-                decryptedMessage = CryptoJS.RC4.decrypt(cipher, key).toString(CryptoJS.enc.Utf8);
-                break;
+                decryptedMessage = CryptoJS.RC4.decrypt({ciphertext: cipher}, key, {
+                  mode: CryptoJS.mode.CBC
+              }).toString(CryptoJS.enc.Utf8);
+              break;
               case 'RC4Drop':
                 decryptedMessage = CryptoJS.RC4Drop.decrypt(cipher, key).toString(CryptoJS.enc.Utf8);
                 break;
               case 'Rabbit':
                 decryptedMessage = CryptoJS.Rabbit.decrypt(cipher, key).toString(CryptoJS.enc.Utf8);
                 break;
-              // add more cases for other decryption algorithms as needed
               default:
                 await interaction.reply(`Invalid algorithm: ${algorithm}`);
                 return;
