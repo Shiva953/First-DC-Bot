@@ -1,6 +1,7 @@
 require('dotenv').config()
 const { SlashCommandBuilder } = require('discord.js');
 const axios = require('axios');
+const { lewdNeko } = require('akaneko');
 const NEWSDATA_API_KEY = process.env.NEWSDATA_API_KEY
 
 module.exports = {
@@ -46,11 +47,17 @@ module.exports = {
   };
 
   // Loop through each news article and add a field to the embed message
+  let l = (news.results.length>7) ? 7 : news.results.length
   for (let i = 0; i < news.results.length; i++) {
     const article = news.results[i];
+    const titl = article.title
+    const descriptionn = article.description
+    if((titl.length + descriptionn.length) > 1000){
+      break;
+    }
     embed.fields.push({
-      name: article.title,
-      value: `${article.description}\n[Read more](${article.link})\n\n`
+      name: titl,
+      value: `${descriptionn}\n[Read more](${article.link})\n\n`
     });
   }
 
