@@ -9,8 +9,8 @@ module.exports = {
             	.setName('type')
                 .setDescription('Truth or Dare?')
                 .setRequired(true).addChoices(
-                    { name: 'Truth', value: 'Tell me the truth!' },
-                    { name: 'Dare', value: 'Have a Dare!' },
+                    { name: 'truth', value: 'truth' },
+                    { name: 'dare', value: 'dare' },
         )),
     async execute(interaction) {
         await interaction.deferReply()
