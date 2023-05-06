@@ -2,7 +2,7 @@ const axios = require('axios')
 const { SlashCommandBuilder } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('truth/dare')
+        .setName('truth_dare')
         .setDescription(`Truth or Dare!`)
         .addStringOption(option =>
             option
