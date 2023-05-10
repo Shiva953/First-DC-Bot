@@ -1,7 +1,6 @@
 require('dotenv').config()
 const { SlashCommandBuilder } = require('discord.js');
 const axios = require('axios');
-const { lewdNeko } = require('akaneko');
 const NEWSDATA_API_KEY = process.env.NEWSDATA_API_KEY
 
 module.exports = {
