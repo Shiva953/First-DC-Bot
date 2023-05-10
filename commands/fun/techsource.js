@@ -17,6 +17,7 @@ module.exports = {
       { name: 'health', value: 'health' },
       { name: 'food', value: 'food' },
       { name: 'sports', value: 'sports' },
+      { name: 'crypto', value: 'crypto' },
     ))
 	  .addStringOption(option => option.setName('topic').setDescription('The topic!').setRequired(true)),
 
