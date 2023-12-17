@@ -34,7 +34,7 @@ module.exports = {
   
       async execute(interaction) {
         await interaction.deferReply(`........`)
-        let connection = new web3.Connection(web3.clusterApiUrl("devnet"), "confirmed");
+        let connection = new web3.Connection(web3.clusterApiUrl("mainnet-beta"), "confirmed");
         console.log(await connection.getVersion());
         if(interaction.options.getSubcommand() === 'balance'){
             const pubkey = interaction.options.getString('publickey');

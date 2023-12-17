@@ -50,6 +50,7 @@ module.exports = {
         else if (interaction.options.getSubcommand() === 'info') {
             const coin = interaction.options.getString('coin')
             const response = await axios.get(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest`,{headers : {'X-CMC_PRO_API_KEY': CMPK}})
+            console.log(response)
             const cryptoData = response.data.data.filter(el => el.symbol==coin)[0]
             await interaction.editReply(`Name: ${cryptoData.name}
 Price: ${cryptoData.quote.USD.price}
